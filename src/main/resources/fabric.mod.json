@@ -15,7 +15,7 @@
 	"icon": "assets/kgl-dev-mc/icon.png",
 	"environment": "*",
 	"entrypoints": {
-		"main": [
+		"client": [
 			{
 				"value": "io.kstud.Kgldevmc",
 				"adapter": "kotlin"
