@@ -9,6 +9,9 @@ import org.lwjgl.opengl.GL20.*
 import org.lwjgl.opengl.GL30.glBindVertexArray
 import org.lwjgl.opengl.GL30.glGenVertexArrays
 
+/**
+ * Minecraft displays content by switching between screens, so if we press R, this screen will be displayed.
+ */
 class KGLScreen : Screen(Text.literal("KGLScreen")) {
 
     private val vaoID: Int
@@ -30,6 +33,9 @@ class KGLScreen : Screen(Text.literal("KGLScreen")) {
 
     private val shaderProgram: ShaderProgram = ShaderProgram()
 
+    /**
+     * init is the constructor for Kotlin classes.
+     */
     init {
         // Generate VAO and VBO buffer objects, and send to GPU
         vaoID = glGenVertexArrays()
@@ -54,6 +60,9 @@ class KGLScreen : Screen(Text.literal("KGLScreen")) {
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices, GL_STATIC_DRAW)
     }
 
+    /**
+     * render() is called every time Minecraft renders a new frame, and it draws the custom stuff on top of the game.
+     */
     override fun render(context: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
         // render Minecraft's gray background
         //this.renderBackground(context, mouseX, mouseY, delta)
@@ -70,19 +79,32 @@ class KGLScreen : Screen(Text.literal("KGLScreen")) {
         glUseProgram(0)
     }
 
+    /**
+     * Called when the mouse is moved.
+     * Uncomment the println to see the mouse coordinates in the console.
+     */
     override fun mouseMoved(mouseX: Double, mouseY: Double) {
         //println("Mouse moved: $mouseX, $mouseY")
     }
 
+    /**
+     * Called when the mouse is clicked.
+     */
     override fun mouseClicked(mouseX: Double, mouseY: Double, button: Int): Boolean {
-        //println("Mouse clicked: $mouseX, $mouseY, $button")
+        println("Mouse clicked: $mouseX, $mouseY, $button")
         return true
     }
 
+    /**
+     * Called when the window is resized.
+     */
     override fun resize(client: MinecraftClient?, width: Int, height: Int) {
-        //println("Resized: $width, $height")
+        println("Resized: $width, $height")
     }
 
+    /**
+     * This method prevents Minecraft from pausing the game when the KGL screen is displayed.
+     */
     override fun shouldPause(): Boolean {
         return false
     }

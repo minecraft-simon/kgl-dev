@@ -4,6 +4,10 @@ import io.kstud.gui.shaders.ExampleFragmentShader
 import io.kstud.gui.shaders.ExampleVertexShader
 import org.lwjgl.opengl.GL20.*
 
+/**
+ * A wrapper around an OpenGL shader program.
+ * ChatGPT generated this for me, so I'm not sure how it works or if we need to change it.
+ */
 class ShaderProgram {
     private val programId: Int
 
