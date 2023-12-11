@@ -15,6 +15,8 @@ import org.lwjgl.glfw.GLFW
  */
 class Kgldevmc : ClientModInitializer {
 
+	private var screen: KGLScreen? = null
+
 	private var openGuiKeybinding: KeyBinding = KeyBindingHelper.registerKeyBinding(
 		KeyBinding(
 			"key.khack.gui",
@@ -34,7 +36,10 @@ class Kgldevmc : ClientModInitializer {
 				val client = MinecraftClient.getInstance()
 				if (client.player != null && client.world != null && client.currentScreen == null) {
 					// if we are in the game, and we press the keybinding, then the GUI will be displayed by creating a new instance of the KGL screen class.
-					client.setScreen(KGLScreen())
+					if (screen == null) {
+						screen = KGLScreen(client.window.width, client.window.height)
+					}
+					client.setScreen(screen)
 				}
 			}
 		})
